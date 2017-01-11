@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://Services/" targetNamespace="http://Services/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DumpDataDB" type="tns:DumpDataDB" />
+  <xs:element name="DumpDataDBResponse" type="tns:DumpDataDBResponse" />
+  <xs:complexType name="DumpDataDB">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="DumpDataDBResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:mesures" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mesures">
+    <xs:sequence>
+      <xs:element name="condValue" type="xs:int" />
+      <xs:element minOccurs="0" name="mesureDate" type="xs:string" />
+      <xs:element name="tempValue" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

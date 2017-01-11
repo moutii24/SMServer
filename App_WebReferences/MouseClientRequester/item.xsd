@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://Services/" targetNamespace="http://Services/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SubmitMouse" type="tns:SubmitMouse" />
+  <xs:element name="SubmitMouseResponse" type="tns:SubmitMouseResponse" />
+  <xs:complexType name="SubmitMouse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="SubmitMouseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:mouseInformations" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mouseInformations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IDmouse" type="xs:string" />
+      <xs:element minOccurs="0" name="dateConnection" type="xs:string" />
+      <xs:element minOccurs="0" name="IPuser" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
