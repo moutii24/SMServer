@@ -12,6 +12,7 @@
   </xs:complexType>
   <xs:complexType name="mesures">
     <xs:sequence>
+      <xs:element minOccurs="0" name="mouseNumber" type="xs:string" />
       <xs:element name="condValue" type="xs:int" />
       <xs:element minOccurs="0" name="mesureDate" type="xs:string" />
       <xs:element name="tempValue" type="xs:int" />

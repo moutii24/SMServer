@@ -25,9 +25,7 @@ public class MouseSubmit : System.Web.Services.WebService {
    [WebMethod]
     public Boolean DumpData()
     {
-
-       
-       
+        SaveDataDB();
        return true;
     }     
 
@@ -58,25 +56,19 @@ public class MouseSubmit : System.Web.Services.WebService {
 
     public void SaveDataDB()
     {
+        string MyConnection = "Server=127.0.0.1;Port=3306;Database=collected_data_mouses;Uid=root;Pwd=admin";
+        string Query;
+
         Dumper.mesures[] mesure;
         Dumper.DumpMesrusesClient dump = new Dumper.DumpMesrusesClient();
-
         mesure = dump.DumpDataDB();
-        string MyConnection = "Server=127.0.0.1;Port=3306;Database=collected_data_mouses;Uid=root;Pwd=admin";
-        //string Query = "insert into mouses_liste.connectedmouses(mouseID,userIP,connectionDate) values('" + mouseInfo.IDmouse + "','" + mouseInfo.IPuser + "','" + mouseInfo.dateConnection + "');";
-        string Query = "insert into collected_data_mouses.mouse_values(condValue,tempValue,mesureDate,mouseID) values(@condValue,@tempValue,@mesureDate,@mouseID);";
-
-        MySqlConnection MyConn = new MySqlConnection(MyConnection);
-        MySqlCommand MyCommand = new MySqlCommand(Query, MyConn);
-        MySqlDataReader MyReader;
-
-        for (int i = 0; i < mesure.Length; i++) { 
-
-            MyCommand.Parameters.AddWithValue("@condValue", mesure[i].condValue);
-            MyCommand.Parameters.AddWithValue("@tempValue", mesure[i].tempValue);
-            MyCommand.Parameters.AddWithValue("@mesureDate", mesure[i].mesureDate);
-            MyCommand.Parameters.AddWithValue("@mesureID", mesure[i].getM);
+        
+        for (int i = 0; i < mesure.Length; i++) {
             
+            Query = "insert into collected_data_mouses.mouse_values(condValue,tempValue,mesureDate,mouseID) values('" + mesure[i].condValue + "','" + mesure[i].tempValue + "','" + mesure[i].mesureDate + "','" + mesure[i].mouseNumber + "');";
+            MySqlConnection MyConn = new MySqlConnection(MyConnection);
+            MySqlCommand MyCommand = new MySqlCommand(Query, MyConn);
+            MySqlDataReader MyReader;
             MyConn.Open();
             MyReader = MyCommand.ExecuteReader();     
             MyConn.Close(); 
